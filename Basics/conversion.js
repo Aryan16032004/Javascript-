@@ -1,3 +1,4 @@
+/*
 let score ="33abc";
 
 console.log(typeof score);
@@ -25,3 +26,25 @@ let somenumber=33
 let stringNumber=String(somenumber);
 console.log(stringNumber);
 console.log(typeof stringNumber)
+
+*/
+
+// ********************* Operations *******************
+/*
+let value=3
+let negvalue= -value
+// console.log(negvalue)
+
+let str1="hello";
+let str2=" world";
+let str3=str1+str2;
+console.log(str3)
+
+console.log("1"+2)
+console.log(1+"2")
+console.log("1"+2+3) // if first is string then it will be consverted to string and concatenated
+console.log(1+2+"3");// if first is a number then it will be add then conctenate with string 
+*/
+console.log(+true); // 1
+
+
