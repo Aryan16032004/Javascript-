@@ -32,9 +32,32 @@ const obj3={...obj1,...obj2}
 
 // we can multiple objects in an objects
 
-console.log(Object.keys(tinderUser)) // return array of all keys 
-console.log(Object.values(tinderUser)) // return array of all values
-console.log(Object.entries(tinderUser))// return arrya of key value pairs 
+// console.log(Object.keys(tinderUser)) // return array of all keys 
+// console.log(Object.values(tinderUser)) // return array of all values
+// console.log(Object.entries(tinderUser))// return arrya of key value pairs 
 
 
-console.log(tinderUser.hasOwnProperty("isLoggedIn")) // return boolean value if the key exist in object
+// console.log(tinderUser.hasOwnProperty("isLoggedIn")) // return boolean value if the key exist in object
+
+const course={
+    coursename: "js",
+    price: "990",
+    courseInstructor:"Hitesh sir"
+}
+
+// course.courseInstructor
+
+const {courseInstructor: instructor}=course
+
+// console.log(courseInstructor)
+console.log(instructor)
+
+// {
+//     "name":"Aryan",
+//     "id":"12208862",
+//     "day":"wednesday"
+// }
+
+// json can be in object or array 
+
+ 
