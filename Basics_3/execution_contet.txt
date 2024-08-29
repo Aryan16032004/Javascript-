@@ -1,0 +1,12 @@
+Javascript Execution Context 
+
+
+javascript is a single thread process
+
+Execution context in js => Global EC,Function EC,Eval EC
+
+
+javascript progrem is run in two phase => Memory Creation Phase,Execution pHase
+
+Memory EP=> spce is allocated for the variables
+
