@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        h1{
+
+        }
+        body{
+            height: 100vh;
+            display: flex;
+            gap: 50px;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        div{
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+        .button{
+            display: flex;
+            flex-direction: row;
+            height: 200px;
+            width: 200px;
+            border:1px solid ;
+        }
+    </style>
+</head>
+<body>
+<h1>Color Scheme Switcher</h1>
+<!-- <div class="button"></div> -->
+ <div>
+<span class="button" id="grey" style="background-color: gray;"> </span>
+<span class="button" id="white" style="background-color: white"></span>
+<span class="button" id="blue" style="background-color: blue;"></span>
+<span class="button" id="yellow" style="background-color: yellow;"></span>
+ </div>
+    <input id="color" type="color">
+    <h2>Try clicking on one of the box to change the background colors</h2>
+
+    <script>
+       const buttons= document.querySelectorAll(".button")
+       const body=document.querySelector("body")
+       buttons.forEach((button) =>{
+        button.addEventListener("click",(e)=>{
+           
+                body.style.backgroundColor=e.target.id
+            
+        })
+
+       })
+       
+       const colorValue=document.querySelector("#color")
+       colorValue.addEventListener("input",(e)=>{
+        body.style.backgroundColor=e.target.value
+        })
+    </script>
+</body>
+</html>
