@@ -1,0 +1,58 @@
+// js is synchronus and single threaded
+
+// executed one ine of code at atime
+
+//Blocking code => blocks code till on work is done 
+// Non blocking code => continue its working even if another line is being executed
+
+// Non blocking code is also known as asynchronous code
+// Blocking code is also known as synchronous code
+
+// fetch => promise work on task queue
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Chai aur Javascript</h1>
+    <button id="start">Start</button>  
+    <button id="stop">Stop</button>  
+</body>
+
+<script>
+    // const sayName=function(){
+    //     console.log("aryan")
+    // }
+    
+   
+    // const changeText=function(){
+    //      document.querySelector('h1').innerHTML="Js Series"
+    // }
+
+    // const changeMe=setTimeout(changeText,2000)
+    // document.querySelector("#stop").addEventListener('click',()=>{
+    //     clearTimeout(changeMe)
+    //     console.log("STOPPED")
+    // })
+    const saydate=function(str){
+        console.log(`Aryan ${str} ${Date.now()}`);
+        
+    }
+    let intervalid
+    document.querySelector("#start").addEventListener('click',()=>{
+         intervalid=setInterval(saydate,1000,"hii")
+    })
+   
+    document.querySelector("#stop").addEventListener('click',()=>{
+        clearInterval(intervalid)
+        console.log("Stopped");
+        
+    })
+    
+</script>
+</html>
