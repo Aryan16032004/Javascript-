@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(to right, #d8dde1, #f0f4f8);
+            font-family: Arial, sans-serif;
+        }
+
+        #navbar {
+            background-color: rgba(15, 57, 81, 0.881);
+            width: 100vw;
+            height: 5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 42rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}   
+        #title{
+            font-size: 2rem;
+            color: white;
+            font-weight: 600;
+            font-family:  Arial, sans-serif;
+        }
+        form{
+            display: flex;
+            gap: 4px;
+        }
+
+        form #searchbar{
+            width: 10rem;
+            padding: 8px 15px;
+            border: 2px solid;
+            border-radius: 5px;
+            font-size: 15px;
+        }
+
+        form #subtn {
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-weight: 600;
+            background-color: rgb(235, 235, 48);
+            border: none;
+            transition: background-color 0.3s ease;
+        }
+        form #subtn:hover {
+            background-color: rgb(255, 215, 0);
+            cursor: pointer;
+        }
+        h1{
+            margin-top:15rem;
+            text-align: center;
+            
+        }
+        
+        #movie-container {
+            margin: 5rem auto;
+            width: 60vw;
+            background-color: white;
+            display: flex;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        #image{
+            width: 25vw;
+            height: 100%;
+        }
+        #img {
+            display: none;
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        #image:hover #img {
+            transform: scale(1.05);
+        }
+        #info{
+            padding: 2rem;
+          text-align: center;
+          width: 35vw;
+        }
+        #movie-name {
+            font-size: 2rem;
+            font-family: Arial, sans-serif;
+            font-weight: 700;
+            margin-top: 1rem;
+            color: #333;
+        }
+
+        #rating {
+            font-size: 1rem;
+            font-family: Arial, sans-serif;
+            margin-top: 0.5rem;
+            color: #777;
+        }
+        #about{
+            text-align: left;
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            font-size: medium;
+            /* font-weight: 600; */
+            font-family: arial;
+            margin-bottom: 1rem;
+
+        }
+        .information {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #444;
+        }
+
+        #genre{
+            display: flex;
+            /* width: 35vw; */
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+        .button {
+            padding: 10px 15px;
+            background-color: rgb(47, 44, 44);
+            color: white;
+            font-weight: 600;
+            font-family: Arial, Helvetica, sans-serif;
+            border-radius: 5px;
+            font-size: 15px;
+            border: none;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .button:hover {
+            background-color: rgb(65, 63, 63);
+            transform: scale(1.05);
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+    <nav id="navbar">
+        <div id="title">
+            <p>Movie Guide App</p>
+        </div>
+
+        <form>
+            <input type="text" id="searchbar" placeholder="Search Movie">
+            <input type="submit" id="subtn">
+        </form>
+    </nav>
+
+        <!-- <h1>Search Movie Details Here</h1> -->
+
+        <div id="movie-container">
+            <div id="image">
+                <img id="img" src="" alt="">
+            </div>
+
+            <div id="info">
+                <p id="movie-name"></p>
+                <p id="rating"></p>
+                <div id="genre"></div>
+
+                <div id="about">
+                    <p id="releases"></p>
+                    <p id="duration"></p>
+                    <p id="cast"></p>
+                    <p id="plot"></p>
+                </div>
+
+            </div>
+
+          
+
+        </div>
+
+
+
+
+    <script>
+        
+            const sumbit=document.getElementById("subtn")
+            let userInput=document.getElementById("searchbar")
+            
+
+            sumbit.addEventListener('click',(e)=>{
+                e.preventDefault()
+                value=userInput.value.trim()
+                console.log(userInput.value);
+                fetch(`https://www.omdbapi.com/?t=${value}&apikey=61ce3590`)
+            .then((response)=>{
+                return response.json()
+            })
+            .then((data)=>{
+               
+                document.getElementById("img").setAttribute('src',data["Poster"])
+                document.getElementById("img").style.display=`block`
+                document.getElementById("movie-name").innerHTML=data["Title"]
+                document.getElementById("rating").innerHTML=`Rating: ${data["imdbRating"]}`
+
+                let genres = data["Genre"].split(", ");
+                genres.forEach(element => {
+                    console.log(element);
+                    document.getElementById("genre").innerHTML+=`<button class="button">${element}</button>`
+                });
+                document.getElementById("releases").innerHTML=`<span class="information">Released Date: </span> ${data["Released"]}`
+                document.getElementById("duration").innerHTML=`<span class="information">Duration: </span> ${data["Runtime"]}`
+                document.getElementById("cast").innerHTML=`<span class="information">Cast: </span>${data["Actors"]}`
+                document.getElementById("plot").innerHTML=`<span class="information">Plot: </span>${data["Plot"]}`
+                userInput.value=""
+                
+            })
+            .then((data) => {
+            if (data.Response === "False") {
+                alert("Movie not found!");
+                return;
+            }})
+            .catch((error)=>{
+                console.log("Error");
+                
+            })
+            })
+         
+            
+            
+    </script>
+</body>
+</html>
